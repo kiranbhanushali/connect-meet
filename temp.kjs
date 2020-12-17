@@ -1,0 +1,18 @@
+from background.js file
+
+
+chrome.runtime.onMessage.addListener(
+    (request, sender, sendResponse)=> {
+
+        let sender_id = sender.tab.id;
+        console.log( ` message received in background script with id = ${sender_id}`  )
+
+        // sending response to the tabs other than curent sender
+        tabs_list.forEach( (id) =>{
+            if( id !== sender_id ){ 
+                console.log ( `sending response to the id = ${id}` ) ;
+                sendResponse(id , {farewell: "goodbye"});
+            }
+        });
+    }
+);
