@@ -9,47 +9,24 @@ function mySendMessage(cur_sender , message ) {
     );
 
 }
-
-let cur_sender = 'You';
-let message = 'none';
-
 var dom_observer = new MutationObserver(function(mutations) {
     mutations.forEach(mutation=>{
-        if (mutation && (mutation.type == "childList") && (mutation.addedNodes.length == 1) && (mutation.removedNodes.length==0) && mutation.addedNodes[0].tagName=="DIV")
-        {
-            let node = mutation.addedNodes[0];
-            console.log( node) ;
-            //data-formatted-timestamp
-           // data-sender-name="You"
-            if(node)
-            {            
 
-                if(node.dataset.senderName){
-                    console.log( " sender name   " ) ;
-                    console.log( node.dataset.senderName); 
-                    node = node.querySelector("[data-message-text]")
-                    console.log( node.dataset.messageText); 
-
-                    cur_sender = node.dataset.senderName;
-                    message = node.dataset.messageText;
-                }
-                 if(node.dataset && node.dataset.messageText)
-                {
-                    message = node.dataset.messageText
-                    console.log( node.dataset.senderName); 
-                    console.log(message); 
-                    message = node.dataset.messageText;
-                    
-                }
-                mySendMessage( cur_sender , message ) ; 
-
-            }
-        }
-    })
+        let node = mutation.addedNodes[0];
+        if ( node ){
+            node.querySelectorAll("div.Zmm6We").forEach( (doc)=> { console.log( doc.querySelectorAll('[data-message-text]')[0].innerText ) } );
+        }   
+    });
 });
 
 var container = document.documentElement || document.body;
-var config = { childList: true, subtree:true };
+var config = { 
+    childList: true, subtree:true,
+    attributeName: null,
+    attributeNamespace: null,
+    nextSibling: null,
+    oldValue: null,
+};
 dom_observer.observe(container, config);
 
 
