@@ -1,7 +1,7 @@
 {
-  "name": "meejegak",
+  "name": "Connect Meet",
   "version": "1.0",
-  "description": "Build an Extension!",
+  "description": "Extention gives multiple Google Meet chats in one Tab",
   "manifest_version": 2,
   "background": {
     "scripts": ["background.js"],
@@ -20,7 +20,8 @@
   "browser_action": {
       "default_icon": {
           "128": "images/icon128.png"
-      }
+      },
+      "default_title": "Click To open Chat Window"
   },
   "icons": {
       "128": "images/icon128.png"
